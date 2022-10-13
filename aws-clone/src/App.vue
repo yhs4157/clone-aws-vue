@@ -1,7 +1,7 @@
 <template>
 
-  <div class="black-bg" v-if="모달창열렸니" @click="모달창열렸니 = false">
-    <div class="white-bg" @click="(event) => e.preventDefault()">
+  <div class="black-bg" v-if="모달창열렸니" @click=toggle>
+    <div class="white-bg" @click.stop="toggle">
       <h4>상세페이지임</h4>
       <p>상세페이지 내용임</p>
     </div>
@@ -16,9 +16,13 @@
     <p>{{prices[index]}} 만원</p>
     <button @click=increase(index)>허위매물신고</button> <span>신고수: {{신고수[index]}}</span>
   </div>
+
+  <App></App>
+
 </template>
 
 <script>
+import App from "./components/exmaple.vue";
 
 export default {
   name: 'App',
@@ -40,10 +44,13 @@ export default {
   methods : {
     increase(index){
       this.신고수[index]++;
+    },
+    toggle(){
+      this.모달창열렸니 = !this.모달창열렸니
     }
   },
   component(){
-
+    App;
   }
 }
 </script>
